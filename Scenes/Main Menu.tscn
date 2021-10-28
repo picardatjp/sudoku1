@@ -1,0 +1,246 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Scenes/Main Menu.gd" type="Script" id=1]
+[ext_resource path="res://Fonts/ArchitectsDaughter-Regular.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 62
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 39
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 24
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 34
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 28
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=6]
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=7]
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=8]
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 24
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 24
+font_data = ExtResource( 2 )
+
+[node name="Main Menu" type="Control"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = 1.25992
+margin_right = 1025.26
+margin_bottom = 600.0
+color = Color( 0.192157, 0.192157, 0.192157, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sudoku_label" type="Label" parent="ColorRect"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -128.5
+margin_top = 125.0
+margin_right = 128.5
+margin_bottom = 242.0
+custom_fonts/font = SubResource( 1 )
+text = "SUDOKU"
+align = 1
+valign = 1
+
+[node name="Play_button" type="Button" parent="ColorRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -62.0
+margin_top = 19.0
+margin_right = 62.0
+margin_bottom = 91.0
+custom_fonts/font = SubResource( 2 )
+text = "Play"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label1" type="Label" parent="ColorRect"]
+margin_left = 651.823
+margin_top = 500.918
+margin_right = 828.823
+margin_bottom = 534.918
+custom_fonts/font = SubResource( 3 )
+text = "Puzzle Selected:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="ColorRect"]
+margin_left = 647.211
+margin_top = 442.898
+margin_right = 835.211
+margin_bottom = 476.898
+custom_fonts/font = SubResource( 3 )
+text = "Puzzle Difficulty:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Puzzle_select_button" type="Button" parent="ColorRect"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -110.5
+margin_top = -148.0
+margin_right = 110.5
+margin_bottom = -69.0
+custom_fonts/font = SubResource( 4 )
+text = "Puzzle Select"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Puzzle_select_popup" type="WindowDialog" parent="ColorRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -269.0
+margin_top = -139.0
+margin_right = 269.0
+margin_bottom = 139.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Select_button" type="Button" parent="ColorRect/Puzzle_select_popup"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -69.0
+margin_top = 71.0
+margin_right = 69.0
+margin_bottom = 133.0
+custom_fonts/font = SubResource( 5 )
+text = "Select"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Medium_button" type="Button" parent="ColorRect/Puzzle_select_popup"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -54.0
+margin_top = 7.0
+margin_right = 46.0
+margin_bottom = 37.0
+custom_fonts/font = SubResource( 6 )
+text = "Medium"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Hard_button" type="Button" parent="ColorRect/Puzzle_select_popup"]
+margin_left = 330.0
+margin_top = 7.0
+margin_right = 430.0
+margin_bottom = 37.0
+custom_fonts/font = SubResource( 7 )
+text = "Hard"
+
+[node name="List" type="ItemList" parent="ColorRect/Puzzle_select_popup"]
+margin_top = 44.0
+margin_right = 538.0
+margin_bottom = 204.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Easy_button" type="Button" parent="ColorRect/Puzzle_select_popup"]
+margin_left = 100.0
+margin_top = 7.0
+margin_right = 200.0
+margin_bottom = 37.0
+custom_fonts/font = SubResource( 8 )
+text = "Easy"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Puzzle_selected_label" type="Label" parent="ColorRect"]
+margin_left = 855.835
+margin_top = 498.583
+margin_right = 886.835
+margin_bottom = 532.583
+custom_fonts/font = SubResource( 9 )
+text = "2"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Puzzle_selected_difficulty" type="Label" parent="ColorRect"]
+margin_left = 854.072
+margin_top = 442.898
+margin_right = 905.072
+margin_bottom = 476.898
+custom_fonts/font = SubResource( 10 )
+text = "Easy"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Clear_puzzle_data_button" type="Button" parent="ColorRect"]
+margin_left = 108.464
+margin_top = 448.58
+margin_right = 296.464
+margin_bottom = 514.58
+text = "Clear puzzle data"
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="ColorRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -114.0
+margin_top = -37.5
+margin_right = 114.0
+margin_bottom = 37.5
+dialog_text = "Are you sure you want to remove
+       progress on this puzzle?"
+__meta__ = {
+"_editor_description_": ""
+}
+
+[connection signal="pressed" from="ColorRect/Play_button" to="." method="_on_Play_button_pressed"]
+[connection signal="pressed" from="ColorRect/Puzzle_select_button" to="." method="_on_Puzzle_select_button_pressed"]
+[connection signal="visibility_changed" from="ColorRect/Puzzle_select_popup" to="." method="_on_Puzzle_select_popup_visibility_changed"]
+[connection signal="pressed" from="ColorRect/Puzzle_select_popup/Select_button" to="." method="_on_Select_button_pressed"]
+[connection signal="pressed" from="ColorRect/Puzzle_select_popup/Medium_button" to="." method="_on_Medium_button_pressed"]
+[connection signal="pressed" from="ColorRect/Puzzle_select_popup/Hard_button" to="." method="_on_Hard_button_pressed"]
+[connection signal="pressed" from="ColorRect/Puzzle_select_popup/Easy_button" to="." method="_on_Easy_button_pressed"]
+[connection signal="pressed" from="ColorRect/Clear_puzzle_data_button" to="." method="_on_Clear_puzzle_data_button_pressed"]
+[connection signal="confirmed" from="ColorRect/ConfirmationDialog" to="." method="_on_ConfirmationDialog_confirmed"]
