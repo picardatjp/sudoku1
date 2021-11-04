@@ -10,20 +10,26 @@ onready var rin_button = $ColorRect/RIN_button
 onready var grid = $ColorRect/board/Grid
 onready var puzzle_label = $ColorRect/puzzle_label
 onready var diff_label = $ColorRect/diff_label
+onready var check_status_label = $ColorRect/check_status_label
+onready var completed_label = $ColorRect/completed_label
 
 #variables
 var puzzles_path = Globals.puzzles_path
 var user_data_path = Globals.user_data_path
+var puzzle_solutions_path = Globals.puzzle_solutions_path
+var last_puzzle_path = Globals.last_puzzle_path
 var puzzle_difficulty = Globals.puzzle_difficulty
 var puzzle_num = Globals.puzzle_num
 var puzzles = {}
 var user_puzzles = {}
+var puzzle_solutions = {}
 var label_array = []
 var cell_size = 52
 var highlight_coord = Vector2.ZERO
 var highlight_active = false
 var coord = Vector2.ZERO
 var markup_status = false
+var completed_puzzles = {}
 
 func _ready():
 	#initially turn rect_highlight off(the blue square)
@@ -36,13 +42,25 @@ func _ready():
 	rin_button["custom_styles/pressed"].bg_color = Color("#7f0606")
 	rin_button["custom_styles/hover"].bg_color = Color("#890606")
 	#this is for setting the difficulty and puzzle number at the top of the screen
-	if Globals.puzzle_difficulty == 1:
+	if Globals.puzzle_difficulty == 0:
 		diff_label.set_text("Easy")
-	elif Globals.puzzle_difficulty == 2:
+	elif Globals.puzzle_difficulty == 1:
 		diff_label.set_text("Medium")
-	elif Globals.puzzle_difficulty == 3:
+	elif Globals.puzzle_difficulty == 2:
 		diff_label.set_text("Hard")
 	puzzle_label.set_text(str(Globals.puzzle_num))
+	
+	#open and populate solutions !!!!
+	var file = File.new()
+	if file.file_exists(puzzle_solutions_path):
+		var error = file.open(puzzle_solutions_path,File.READ)
+		#if it opened fine
+		if error == OK:
+			#put json data into puzzle solutions dictionary
+			var text = file.get_as_text()
+			puzzle_solutions = parse_json(text)
+		file.close()
+	
 	#initialize label_array
 	label_array.resize(81)
 	#retireve puzzle data
@@ -52,6 +70,8 @@ func _ready():
 	#set labels to their values from the json files
 	set_label_puzzle_data()
 #	print("mouse: " + str(get_global_mouse_position()))
+	check_status_label.set_text("")
+	
 
 func _input(event):
 	#check for mouse movement
@@ -84,7 +104,7 @@ func _input(event):
 			highlight_coord = coord
 			move_rect()
 	#if a number or backspace or delete si pressed and current selection isn't from the original puzzle, and markup is off(big number mode)
-	if event is InputEventKey and puzzles[str(puzzle_difficulty)][str(puzzle_num)][highlight_coord.y*9 + highlight_coord.x] == " " and not markup_status:
+	if event is InputEventKey and puzzles[str(puzzle_difficulty)][str(puzzle_num)][1][highlight_coord.y*9 + highlight_coord.x] == "." and not markup_status:
 		if event.scancode == KEY_1 and highlight_active:
 			set_label_big("1")
 		elif event.scancode == KEY_2 and highlight_active:
@@ -105,6 +125,31 @@ func _input(event):
 			set_label_big("9")
 		elif (event.scancode == KEY_BACKSPACE or event.scancode == KEY_DELETE) and highlight_active:
 			set_label_big(" ")
+	if event is InputEventKey and highlight_active and event.is_pressed() and not event.is_echo():
+		if event.scancode == KEY_LEFT:
+			if highlight_coord.x > 0:
+				highlight_coord.x = highlight_coord.x-1
+			else:
+				highlight_coord.x = 8
+			move_rect()
+		elif event.scancode == KEY_RIGHT:
+			if highlight_coord.x < 8:
+				highlight_coord.x = highlight_coord.x+1
+			else:
+				highlight_coord.x = 0
+			move_rect()
+		elif event.scancode == KEY_UP:
+			if highlight_coord.y > 0:
+				highlight_coord.y = highlight_coord.y-1
+			else:
+				highlight_coord.y = 8
+			move_rect()
+		elif event.scancode == KEY_DOWN:
+			if highlight_coord.y < 8:
+				highlight_coord.y = highlight_coord.y+1
+			else:
+				highlight_coord.y = 0
+			move_rect()
 	#this is for the eventual markup mode
 #	elif event is InputEventKey and puzzles[str(puzzle_difficulty)][str(puzzle_num)][highlight_coord.y*9 + highlight_coord.x] == " ":
 #			set_label_small("1")
@@ -159,19 +204,24 @@ func save_work():
 	#loop through all labels
 	for i in 81:
 		#if the label isn't blank and the the label doesn't have a number from puzzle in it
-		if puzzles[str(puzzle_difficulty)][str(puzzle_num)][i] == " " and label_array[80-i].get_text() != "":
+		if puzzles[str(puzzle_difficulty)][str(puzzle_num)][1][i] == "." and label_array[80-i].get_text() != "" and label_array[80-i].get_text() != " ":
 			#string += label_array[i] text
 			string = str(string,label_array[80-i].get_text())
 		else:
 			#otherwise just put a space as a placeholder
-			string = str(string, " ")
-			#the actual saving bit
-	user_puzzles[str(puzzle_difficulty)][str(puzzle_num)] = string
+			string = str(string, ".")
+			#the actual saving portion
+	user_puzzles[str(puzzle_difficulty)][str(puzzle_num)][1] = string
 	#file saving boilerplate
 	var file = File.new()
 	var error = file.open(user_data_path,File.WRITE)
 	if error == OK:
 		file.store_line(to_json(user_puzzles))
+	file.close()
+	error = file.open(last_puzzle_path,File.WRITE)
+	if error == OK:
+		var dict = {"difficulty": str(puzzle_difficulty),"puzzle_num": str(puzzle_num)}
+		file.store_line(to_json(dict))
 	file.close()
 
 #removes all labels from grid
@@ -199,11 +249,11 @@ func set_label_puzzle_data():
 	#loop through all json data
 	for i in 81:
 		#if the number in the puzzle and user_puzzle isn't blank, set the label it corresponds to to that number
-		if puzzles[str(puzzle_difficulty)][str(puzzle_num)][i] != " ":
-			label_array[80-i].set_text(puzzles[str(puzzle_difficulty)][str(puzzle_num)][i])
+		if puzzles[str(puzzle_difficulty)][str(puzzle_num)][1][i] != ".":
+			label_array[80-i].set_text(puzzles[str(puzzle_difficulty)][str(puzzle_num)][1][i])
 			label_array[80-i]["custom_colors/font_color"] = Color("#000000")
-		elif user_puzzles[str(puzzle_difficulty)][str(puzzle_num)][i] != " ":
-			label_array[80-i].set_text(user_puzzles[str(puzzle_difficulty)][str(puzzle_num)][i])
+		elif user_puzzles[str(puzzle_difficulty)][str(puzzle_num)][1][i] != ".":
+			label_array[80-i].set_text(user_puzzles[str(puzzle_difficulty)][str(puzzle_num)][1][i])
 			label_array[80-i]["custom_colors/font_color"] = Color("#ff0000")
 
 #retrieve puzzle data
@@ -227,8 +277,14 @@ func get_puzzle():
 			var text = file.get_as_text()
 			user_puzzles = parse_json(text)
 			if not user_puzzles.has(str(puzzle_difficulty)) or not user_puzzles[str(puzzle_difficulty)].has(str(puzzle_num)):
-				user_puzzles[str(puzzle_difficulty)][str(puzzle_num)] = "                                                                                 "
+				user_puzzles[str(puzzle_difficulty)][str(puzzle_num)] = ["",""]
+				user_puzzles[str(puzzle_difficulty)][str(puzzle_num)][0] = "0"
+				user_puzzles[str(puzzle_difficulty)][str(puzzle_num)][1] = "................................................................................."
 		file.close()
+	if user_puzzles[str(puzzle_difficulty)][str(puzzle_num)][0] == "0":
+		completed_label.set_text("No")
+	else:
+		completed_label.set_text("Yes")
 
 #set the text of a label in the grid
 func set_label_big(num):
@@ -238,9 +294,24 @@ func set_label_big(num):
 	label_array[index]["custom_colors/font_color"] = Color("#ff0000")
 
 #set text of a label in the grid (for markup)
-func set_label_small(num):
-	var index = 80 - (highlight_coord.y*9 + highlight_coord.x)
+#func set_label_small(num):
+#	var index = 80 - (highlight_coord.y*9 + highlight_coord.x)
 
-#checks work for errors
+#run when the check! button is pressed, sets label underneath it to complete or incomplete
 func _on_Check_Work_button_pressed():
-	pass # Replace with function body.
+	if check_completion():
+		check_status_label.set_text("Complete")
+	else:
+		check_status_label.set_text("Incomplete")
+
+#check puzzle completion
+func check_completion():
+	#check against completed puzzle
+	for i in 81:
+		if puzzle_solutions[str(puzzle_difficulty)][str(puzzle_num)][i] != label_array[80-i].get_text():
+			user_puzzles[str(puzzle_difficulty)][str(puzzle_num)][0] = "0"
+			completed_label.set_text("No")
+			return false
+	user_puzzles[str(puzzle_difficulty)][str(puzzle_num)][0] = "1"
+	completed_label.set_text("Yes")
+	return true

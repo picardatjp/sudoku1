@@ -201,9 +201,9 @@ enabled_focus_mode = 0
 text = "Redo"
 
 [node name="puzzle_label" type="Label" parent="ColorRect"]
-margin_left = 674.436
+margin_left = 662.436
 margin_top = 15.0
-margin_right = 714.436
+margin_right = 702.436
 margin_bottom = 49.0
 custom_fonts/font = SubResource( 10 )
 text = "3"
@@ -235,10 +235,47 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label4" type="Label" parent="ColorRect"]
-margin_left = 594.682
+[node name="Label5" type="Label" parent="ColorRect"]
+margin_left = 708.442
 margin_top = 15.0
-margin_right = 666.682
+margin_right = 949.442
+margin_bottom = 49.0
+custom_fonts/font = SubResource( 10 )
+text = "Previously Completed:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="completed_label" type="Label" parent="ColorRect"]
+margin_left = 958.0
+margin_top = 15.0
+margin_right = 996.0
+margin_bottom = 49.0
+custom_fonts/font = SubResource( 10 )
+text = "Yes"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="check_status_label" type="Label" parent="ColorRect"]
+margin_left = 23.6216
+margin_top = 162.486
+margin_right = 141.622
+margin_bottom = 196.486
+custom_fonts/font = SubResource( 10 )
+text = "Incomplete"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label4" type="Label" parent="ColorRect"]
+margin_left = 585.682
+margin_top = 15.0
+margin_right = 657.682
 margin_bottom = 49.0
 custom_fonts/font = SubResource( 10 )
 text = "Puzzle:"
