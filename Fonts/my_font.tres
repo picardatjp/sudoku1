@@ -1,7 +1,7 @@
 [gd_resource type="DynamicFont" load_steps=2 format=2]
 
-[ext_resource path="res://Fonts/ArchitectsDaughter-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Fonts/bahnschrift.ttf" type="DynamicFontData" id=1]
 
 [resource]
-size = 37
+size = 32
 font_data = ExtResource( 1 )

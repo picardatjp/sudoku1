@@ -1,29 +1,39 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Scenes/Main Menu.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/ArchitectsDaughter-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Fonts/my_font.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Fonts/bahnschrift.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Themes/new_theme.tres" type="Theme" id=5]
 
 [sub_resource type="DynamicFont" id=1]
-size = 62
-font_data = ExtResource( 2 )
+size = 130
+font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxFlat" id=25]
+bg_color = Color( 0.12549, 0.12549, 0.12549, 1 )
+
+[sub_resource type="StyleBoxFlat" id=21]
+bg_color = Color( 0.0862745, 0.0862745, 0.0862745, 1 )
 
 [sub_resource type="DynamicFont" id=2]
-size = 39
-font_data = ExtResource( 2 )
+font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 24
-font_data = ExtResource( 2 )
+font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=4]
-size = 34
-font_data = ExtResource( 2 )
+font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxFlat" id=14]
+bg_color = Color( 0.0862745, 0.0862745, 0.0862745, 1 )
 
 [sub_resource type="DynamicFont" id=5]
-size = 28
-font_data = ExtResource( 2 )
+font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=6]
+size = 28
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=7]
@@ -33,12 +43,44 @@ font_data = ExtResource( 2 )
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=9]
-size = 24
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=10]
 size = 24
-font_data = ExtResource( 2 )
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=11]
+size = 24
+font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxFlat" id=15]
+bg_color = Color( 0.0862745, 0.0862745, 0.0862745, 1 )
+
+[sub_resource type="DynamicFont" id=12]
+font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxFlat" id=22]
+bg_color = Color( 0.12549, 0.12549, 0.12549, 1 )
+
+[sub_resource type="StyleBoxFlat" id=16]
+bg_color = Color( 0.0862745, 0.0862745, 0.0862745, 1 )
+
+[sub_resource type="DynamicFont" id=17]
+size = 24
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=19]
+font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxFlat" id=23]
+bg_color = Color( 0.12549, 0.12549, 0.12549, 1 )
+
+[sub_resource type="DynamicFont" id=18]
+size = 32
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=26]
+font_data = ExtResource( 4 )
 
 [node name="Main Menu" type="Control"]
 script = ExtResource( 1 )
@@ -50,7 +92,7 @@ __meta__ = {
 margin_left = 1.25992
 margin_right = 1025.26
 margin_bottom = 600.0
-color = Color( 0.192157, 0.192157, 0.192157, 1 )
+color = Color( 0.168627, 0.168627, 0.168627, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -58,46 +100,56 @@ __meta__ = {
 [node name="Sudoku_label" type="Label" parent="ColorRect"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -128.5
-margin_top = 125.0
-margin_right = 128.5
-margin_bottom = 242.0
+margin_left = -252.152
+margin_top = 56.1675
+margin_right = 249.848
+margin_bottom = 202.168
 custom_fonts/font = SubResource( 1 )
 text = "SUDOKU"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Play_button" type="Button" parent="ColorRect"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -62.0
-margin_top = 19.0
-margin_right = 62.0
-margin_bottom = 91.0
-custom_fonts/font = SubResource( 2 )
+margin_left = -71.0001
+margin_top = -94.0
+margin_right = 91.9999
+margin_bottom = -14.0
+focus_mode = 0
+custom_styles/hover = SubResource( 25 )
+custom_styles/pressed = SubResource( 25 )
+custom_styles/disabled = SubResource( 21 )
+custom_styles/normal = SubResource( 21 )
+custom_fonts/font = ExtResource( 3 )
+enabled_focus_mode = 0
 text = "Play"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label1" type="Label" parent="ColorRect"]
-margin_left = 651.823
-margin_top = 500.918
-margin_right = 828.823
-margin_bottom = 534.918
-custom_fonts/font = SubResource( 3 )
+margin_left = 410.446
+margin_top = 300.57
+margin_right = 535.446
+margin_bottom = 334.57
+custom_fonts/font = SubResource( 2 )
 text = "Puzzle Selected:"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label3" type="Label" parent="ColorRect"]
-margin_left = 651.823
-margin_top = 545.918
-margin_right = 828.823
-margin_bottom = 579.918
+visible = false
+margin_left = 701.574
+margin_top = 298.674
+margin_right = 878.574
+margin_bottom = 332.674
 custom_fonts/font = SubResource( 3 )
 text = "Completed:"
 align = 1
@@ -106,21 +158,22 @@ __meta__ = {
 }
 
 [node name="Label2" type="Label" parent="ColorRect"]
-margin_left = 647.211
-margin_top = 442.898
-margin_right = 835.211
-margin_bottom = 476.898
-custom_fonts/font = SubResource( 3 )
+visible = false
+margin_left = 722.62
+margin_top = 200.735
+margin_right = 864.62
+margin_bottom = 234.735
+custom_fonts/font = SubResource( 4 )
 text = "Puzzle Difficulty:"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Completed_label" type="Label" parent="ColorRect"]
-margin_left = 852.103
-margin_top = 545.418
-margin_right = 887.103
-margin_bottom = 579.418
+margin_left = 869.246
+margin_top = 298.866
+margin_right = 904.246
+margin_bottom = 332.866
 custom_fonts/font = SubResource( 3 )
 text = "No"
 __meta__ = {
@@ -128,15 +181,17 @@ __meta__ = {
 }
 
 [node name="Puzzle_select_button" type="Button" parent="ColorRect"]
+visible = false
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -110.5
-margin_top = -148.0
-margin_right = 110.5
-margin_bottom = -69.0
-custom_fonts/font = SubResource( 4 )
+margin_left = -466.621
+margin_top = -354.533
+margin_right = -299.621
+margin_bottom = -275.533
+custom_styles/normal = SubResource( 14 )
+custom_fonts/font = SubResource( 5 )
 text = "Puzzle Select"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -164,7 +219,7 @@ margin_left = -69.0
 margin_top = 71.0
 margin_right = 69.0
 margin_bottom = 133.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
 text = "Select"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -177,7 +232,7 @@ margin_left = -54.0
 margin_top = 7.0
 margin_right = 46.0
 margin_bottom = 37.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
 text = "Medium"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -188,7 +243,7 @@ margin_left = 330.0
 margin_top = 7.0
 margin_right = 430.0
 margin_bottom = 37.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 8 )
 text = "Hard"
 
 [node name="List" type="ItemList" parent="ColorRect/Puzzle_select_popup"]
@@ -204,7 +259,7 @@ margin_left = 100.0
 margin_top = 7.0
 margin_right = 200.0
 margin_bottom = 37.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 9 )
 text = "Easy"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -218,11 +273,11 @@ margin_bottom = 256.0
 text = "Random Puzzle"
 
 [node name="Puzzle_selected_label" type="Label" parent="ColorRect"]
-margin_left = 855.835
-margin_top = 498.583
-margin_right = 886.835
-margin_bottom = 532.583
-custom_fonts/font = SubResource( 9 )
+margin_left = 605.503
+margin_top = 293.792
+margin_right = 636.503
+margin_bottom = 327.792
+custom_fonts/font = SubResource( 10 )
 text = "2"
 align = 1
 valign = 1
@@ -231,11 +286,11 @@ __meta__ = {
 }
 
 [node name="Puzzle_selected_difficulty" type="Label" parent="ColorRect"]
-margin_left = 854.072
-margin_top = 442.898
-margin_right = 905.072
-margin_bottom = 476.898
-custom_fonts/font = SubResource( 10 )
+margin_left = 554.332
+margin_top = 293.424
+margin_right = 605.332
+margin_bottom = 327.424
+custom_fonts/font = SubResource( 11 )
 text = "Easy"
 align = 1
 valign = 1
@@ -244,11 +299,17 @@ __meta__ = {
 }
 
 [node name="Clear_puzzle_data_button" type="Button" parent="ColorRect"]
-margin_left = 108.464
-margin_top = 448.58
-margin_right = 296.464
-margin_bottom = 514.58
+visible = false
+margin_left = 36.168
+margin_top = 134.864
+margin_right = 216.168
+margin_bottom = 200.864
+custom_styles/normal = SubResource( 15 )
+custom_fonts/font = SubResource( 12 )
 text = "Clear puzzle data"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ConfirmationDialog" type="ConfirmationDialog" parent="ColorRect"]
 anchor_left = 0.5
@@ -265,6 +326,127 @@ __meta__ = {
 "_editor_description_": ""
 }
 
+[node name="Settings_button" type="Button" parent="ColorRect"]
+margin_left = 16.0
+margin_top = 543.0
+margin_right = 191.0
+margin_bottom = 588.0
+rect_pivot_offset = Vector2( 121, 105.593 )
+focus_mode = 0
+custom_styles/hover = SubResource( 22 )
+custom_styles/pressed = SubResource( 22 )
+custom_styles/disabled = SubResource( 16 )
+custom_styles/normal = SubResource( 16 )
+custom_fonts/font = SubResource( 17 )
+enabled_focus_mode = 0
+text = "Settings"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name_label" type="Label" parent="ColorRect"]
+margin_left = 900.0
+margin_top = 550.0
+margin_right = 1008.0
+margin_bottom = 587.0
+custom_fonts/font = SubResource( 19 )
+text = "Jacob Picardat
+2022"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="How_to_button" type="Button" parent="ColorRect"]
+margin_left = 16.0
+margin_top = 491.0
+margin_right = 191.0
+margin_bottom = 536.0
+rect_pivot_offset = Vector2( 121, 105.593 )
+focus_mode = 0
+custom_styles/hover = SubResource( 23 )
+custom_styles/pressed = SubResource( 23 )
+custom_styles/disabled = SubResource( 16 )
+custom_styles/normal = SubResource( 16 )
+custom_fonts/font = SubResource( 17 )
+enabled_focus_mode = 0
+text = "How To Play"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="black_box1" type="ColorRect" parent="ColorRect"]
+margin_left = 290.0
+margin_top = 336.0
+margin_right = 764.0
+margin_bottom = 587.0
+color = Color( 0.0862745, 0.0862745, 0.0862745, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="skinny_gray_line" type="ColorRect" parent="ColorRect"]
+margin_left = 519.0
+margin_top = 389.0
+margin_right = 525.0
+margin_bottom = 592.0
+color = Color( 0.168627, 0.168627, 0.168627, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Puzzle_select_label" type="Label" parent="ColorRect"]
+margin_left = 421.553
+margin_top = 346.57
+margin_right = 615.553
+margin_bottom = 379.57
+custom_fonts/font = SubResource( 18 )
+text = "Puzzle Select"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label5" type="Label" parent="ColorRect"]
+margin_left = 603.471
+margin_top = 391.493
+margin_right = 688.471
+margin_bottom = 408.493
+custom_fonts/font = SubResource( 26 )
+text = "New Puzzle"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label4" type="Label" parent="ColorRect"]
+margin_left = 340.179
+margin_top = 398.135
+margin_right = 380.179
+margin_bottom = 412.135
+custom_fonts/font = SubResource( 26 )
+text = "In Progress"
+
+[node name="ItemList" type="ItemList" parent="."]
+margin_left = 322.0
+margin_top = 426.0
+margin_right = 490.0
+margin_bottom = 559.0
+rect_min_size = Vector2( 80, 80 )
+theme = ExtResource( 5 )
+items = [ "Easy #5", null, false, "Medium #666", null, false, "Item 2", null, false, "Item 3", null, false, "Item 4", null, false, "Item 5", null, false, "Item 6", null, false, "Item 7", null, false ]
+same_column_width = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="."]
+margin_left = 243.499
+margin_top = 288.58
+margin_right = 406.499
+margin_bottom = 413.58
+theme = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="pressed" from="ColorRect/Play_button" to="." method="_on_Play_button_pressed"]
 [connection signal="pressed" from="ColorRect/Puzzle_select_button" to="." method="_on_Puzzle_select_button_pressed"]
 [connection signal="visibility_changed" from="ColorRect/Puzzle_select_popup" to="." method="_on_Puzzle_select_popup_visibility_changed"]
@@ -275,3 +457,5 @@ __meta__ = {
 [connection signal="pressed" from="ColorRect/Puzzle_select_popup/random_button" to="." method="_on_random_button_pressed"]
 [connection signal="pressed" from="ColorRect/Clear_puzzle_data_button" to="." method="_on_Clear_puzzle_data_button_pressed"]
 [connection signal="confirmed" from="ColorRect/ConfirmationDialog" to="." method="_on_ConfirmationDialog_confirmed"]
+[connection signal="pressed" from="ColorRect/Settings_button" to="." method="_on_Settings_button_pressed"]
+[connection signal="pressed" from="ColorRect/How_to_button" to="." method="_on_How_to_button_pressed"]

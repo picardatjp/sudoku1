@@ -1,0 +1,12 @@
+markups
+highlighting
+settings menu
+update font and layout
+update layout for puzzle select screen, maybe only select in progress puzzles
+a next puzzle button
+popup saying congratulations when you complete puzzle
+make grey bars less opaque
+highlight red when placing an invalid number, like two 7's in the same row
+when you click on a number, it highlights all numbers that are the same
+different themes
+undo redo buttons

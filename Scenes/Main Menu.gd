@@ -120,3 +120,11 @@ func _on_random_button_pressed():
 	Globals.puzzle_num = puzzle_selected
 	puzzle_select_popup.visible = false
 
+
+
+func _on_How_to_button_pressed():
+	pass # Replace with function body.
+
+
+func _on_Settings_button_pressed():
+	pass # Replace with function body.
