@@ -204,7 +204,7 @@ func save_work():
 	#loop through all labels
 	for i in 81:
 		#if the label isn't blank and the the label doesn't have a number from puzzle in it
-		if puzzles[str(puzzle_difficulty)][str(puzzle_num)][1][i] == "." and label_array[80-i].get_text() != "" and label_array[80-i].get_text() != " ":
+		if puzzles[str(puzzle_difficulty)][str(puzzle_num)][i] == "." and label_array[80-i].get_text() != "" and label_array[80-i].get_text() != " ":
 			#string += label_array[i] text
 			string = str(string,label_array[80-i].get_text())
 		else:
@@ -249,8 +249,8 @@ func set_label_puzzle_data():
 	#loop through all json data
 	for i in 81:
 		#if the number in the puzzle and user_puzzle isn't blank, set the label it corresponds to to that number
-		if puzzles[str(puzzle_difficulty)][str(puzzle_num)][1][i] != ".":
-			label_array[80-i].set_text(puzzles[str(puzzle_difficulty)][str(puzzle_num)][1][i])
+		if puzzles[str(puzzle_difficulty)][str(puzzle_num)][i] != ".":
+			label_array[80-i].set_text(puzzles[str(puzzle_difficulty)][str(puzzle_num)][i])
 			label_array[80-i]["custom_colors/font_color"] = Color("#000000")
 		elif user_puzzles[str(puzzle_difficulty)][str(puzzle_num)][1][i] != ".":
 			label_array[80-i].set_text(user_puzzles[str(puzzle_difficulty)][str(puzzle_num)][1][i])
